@@ -1,2 +1,5 @@
-# damas
-Juego de las damas
+# Práctica Damas
+
+## Modelo del dominio
+### UML 📋
+![UML](/modeloDominio.png)

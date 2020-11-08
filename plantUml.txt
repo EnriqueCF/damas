@@ -1,0 +1,25 @@
+@startuml
+title Las damas - Modelo del Dominio
+
+class Damas
+class Jugador
+class Tablero
+class Coordenada
+class Ficha
+class Color
+class Peón
+class Reina
+
+Damas *--> "2" Jugador
+Damas *--> "1" Tablero
+Tablero *--> "8x8" Coordenada
+Coordenada *--> "a..1" Ficha
+Jugador *--> "12" Peón
+Jugador *--> "2" Reina
+Jugador --> Color
+Jugador --> Tablero
+
+Ficha ^-- Peón
+Ficha ^-- Reina
+Ficha --> Color
+@enduml
