@@ -23,8 +23,26 @@ public class StateTest {
 	
 	@Test
 	public void testNextIterations() {
-		for(int i=0; i<StateValue.EXIT.ordinal(); i++) {
-			
+		this.state.reset();
+		assertThat(this.state.getValueState(), is(equalTo(StateValue.INITIAL)));
+	}
+	
+	@Test
+	public void testGivenValueStateWhenNext() {
+		this.state.next();
+		assertThat(this.state.getValueState(), is(equalTo(StateValue.IN_GAME)));
+		
+		this.state.next();
+		assertThat(this.state.getValueState(), is(equalTo(StateValue.FINAL)));
+		
+		this.state.next();
+		assertThat(this.state.getValueState(), is(equalTo(StateValue.EXIT)));
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void testGivenErrorWhenStateValueAfterExit() {
+		for(int i=0; i< StateValue.values().length; i++) {
+			this.state.next();
 		}
 	}
 }
