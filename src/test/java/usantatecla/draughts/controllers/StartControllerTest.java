@@ -1,38 +1,24 @@
 package usantatecla.draughts.controllers;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 
-import usantatecla.draughts.models.Coordinate;
-import usantatecla.draughts.models.Game;
-import usantatecla.draughts.models.State;
+public class StartControllerTest extends ControllerTest {
 
-public class StartControllerTest {
-
-	private static final int UPPER_LIMIT = 7;
-	private static final int DIMENSION = UPPER_LIMIT + 1;
-
+	@InjectMocks
 	private StartController controller;
 
-	@Spy
-	private Game game;
-	
 	@Mock
-	private State state;
+	private InteractorControllersVisitor controllersVisitor;
 
 	@Before
 	public void before() {
-		
 		MockitoAnnotations.initMocks(this);
-		this.controller = new StartController(game, state);
 	}
 
 	@Test
@@ -42,20 +28,9 @@ public class StartControllerTest {
 	}
 
 	@Test
-	public void testGetDimension() {
-		when(this.game.getDimension()).thenReturn(DIMENSION);
-
-		assertThat(this.controller.getDimension(), is(Coordinate.getDimension()));
+	public void testAccept() {
+		this.controller.accept(controllersVisitor);
+		verify(controllersVisitor).visit(controller);
 	}
-//	
-//	@Test
-//	public void testGetPiece() {
-//		this.controller.getPiece(coordinate);
-//	}
-//	
-//	@Test
-//	public void testGetColor(){
-//		this.controller.getColor(coordinate);
-//		
-//	}
+
 }

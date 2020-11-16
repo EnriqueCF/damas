@@ -9,24 +9,15 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import usantatecla.draughts.models.Coordinate;
 import usantatecla.draughts.models.Error;
-import usantatecla.draughts.models.Game;
-import usantatecla.draughts.models.State;
 
-public class MoveControllerTest {
+public class MoveControllerTest extends ControllerTest{
 
 	@InjectMocks
 	private MoveController moveController;
-	
-	@Mock
-	private Game game;
-	
-	@Mock
-	private State state;
 	
 	@Before
 	public void before() {

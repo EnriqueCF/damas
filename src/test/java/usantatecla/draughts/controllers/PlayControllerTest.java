@@ -12,10 +12,8 @@ import org.mockito.MockitoAnnotations;
 
 import usantatecla.draughts.models.Coordinate;
 import usantatecla.draughts.models.Error;
-import usantatecla.draughts.models.Game;
-import usantatecla.draughts.models.State;
 
-public class PlayControllerTest {
+public class PlayControllerTest extends ControllerTest{
 
 	@InjectMocks
 	private PlayController controller;
@@ -26,26 +24,18 @@ public class PlayControllerTest {
 	@Mock
 	private MoveController moveController;
 	
-	@Mock
-	private Game game;
-	
-	@Mock
-	private State state;
-	
 	@Before
 	public void before() {
-		MockitoAnnotations.initMocks(this);
-		this.controller = new PlayController(game, state);
-
+		MockitoAnnotations.initMocks(this);	
 	}
 	
 	@Test
 	public void testGivenErrorWhenMoveControllerMove() {
-		Coordinate coordinate = new Coordinate(1,1);
-		Coordinate coordinate2 = new Coordinate(2,2);
-		when(moveController.move(coordinate, coordinate2)).thenReturn(Error.BAD_FORMAT);
+		Coordinate origin = new Coordinate(1,1);
+		Coordinate target = new Coordinate(2,2);
+		when(moveController.move(origin, target)).thenReturn(Error.BAD_FORMAT);
 		
-		Error error = this.controller.move(coordinate, coordinate2);
+		Error error = this.controller.move(origin, target);
 		assertThat(error, is(Error.BAD_FORMAT));
 	}
 	
